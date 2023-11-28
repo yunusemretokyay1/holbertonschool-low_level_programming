@@ -9,20 +9,26 @@
  * Return: address of new element or NULL if failed
  */
 dlistint_t *add_dnodeint(dlistint_t **head, const int n)
-{if(head == NULL) {
-head = (struct node *)malloc(sizeof(struct node));
-head -> data = key;
-head -> next = head;
-head -> prev = head;
-}
-else {
-struct node *temp = (struct node *)malloc(sizeof(struct node));
-temp -> data = key;
-struct node *last = head;
-head->prev->next=temp;
-temp->next=head;
-temp->prev=head->prev;
-head->prev=temp;
-head = temp;
-}
+{
+	dlistint_t *new = NULL;
+
+	new = malloc(sizeof(dlistint_t));
+	if (!new)
+		return (NULL);
+	new->n = n;
+	new->prev = NULL;
+
+	if (*head == NULL)
+	{
+		new->next = NULL;
+		*head = new;
+	}
+	else
+	{
+		new->next = *head;
+		if (*head)
+			(*head)->prev = new;
+		*head = new;
+	}
+	return (new);
 }
