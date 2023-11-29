@@ -8,23 +8,22 @@
   *
   * Return: The specific node of the doubly linked list
   */
-dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index);
+dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
 {
-dlistint_t *current = head;
-	unsigned int iter= 0;
+	dlistint_t *current = head;
+	unsigned int iter_times = 0;
 
 	if (head)
 	{
 		while (current != NULL)
 		{
-			if (iter == index)
+			if (iter_times == index)
 				return (current);
 
 			current = current->next;
-			++iter;
+			++iter_times;
 		}
 	}
 
 	return (NULL);
-}
 }
